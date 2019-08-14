@@ -1,7 +1,3 @@
-# cadaster-mvc
+# Cadaster MVC
 
-Projeto de estudo de ASP.NET Core MVC
-
-## Camadas
-
-- DAO: acesso e operações de banco de dados com ADO.NET
+- Projeto de estudo de ASP.NET Core MVC com ADO.NET e TSQL.
