@@ -5,12 +5,12 @@ CREATE TABLE [Cadaster].[dbo].[Pessoa]
 		Empresa				VARCHAR(100)	NOT NULL,
 		Contato				VARCHAR(100)	NOT NULL,
 		Sexo				VARCHAR(20)				,
-		DataCriacao			DATETIME		NOT NULL,
-		UltimaAtualizacao	DATETIME
+		DataCriacao			DATETIME		NOT NULL DEFAULT GETDATE(),
+		UltimaAtualizacao	DATETIME		NOT NULL DEFAULT GETDATE()
 	)
 
 INSERT INTO
-	Cadaster..Pessoa (Nome, Empresa, Contato, Sexo, DataCriacao, UltimaAtualizacao)
+	Cadaster..Pessoas (Nome, Empresa, Contato, Sexo, DataCriacao, UltimaAtualizacao)
 VALUES
 	(
 		  'Isac Petinate'

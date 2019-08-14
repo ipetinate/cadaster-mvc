@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TesteEnvioFormulario.Extensions
+namespace CadasterMVC.Extensions
 {
-    public static class ObjecExtension
+    public static class ObjectExtension
     {
         public static bool IsNull(this object obj)
         {
