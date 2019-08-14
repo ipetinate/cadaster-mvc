@@ -56,9 +56,8 @@ namespace CadasterMVC.Controllers
             pessoaModel.Nome = pessoaViewModel.Nome;
             pessoaModel.Empresa = pessoaViewModel.Empresa;
             pessoaModel.Contato = pessoaViewModel.Contato;
-            pessoaModel.Sexo = pessoaViewModel.Sexo;
             pessoaModel.DataCriacao = DateTime.Now;
-            pessoaModel.UltimaAtualizacao = DateTime.Now;
+            pessoaModel.DataAlteracao = DateTime.Now;
 
             return pessoaModel;
         }
@@ -74,10 +73,14 @@ namespace CadasterMVC.Controllers
             return !pessoaDb.Atualizar(pessoaModel.Id, pessoaModel) ?  new StatusCodeResult(500) : (IActionResult) Redirect("PessoaView");
         }
 
-        [HttpDelete]
+        [HttpPost]
         public IActionResult ExcluirPessoa(int id)
         {
-            return View();
+            PessoaDb pessoaDb = new PessoaDb();
+
+            pessoaDb.Excluir(id);
+
+            return Redirect("PessoaVIew");
         }
     }
 }

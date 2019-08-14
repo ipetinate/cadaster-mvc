@@ -12,8 +12,7 @@ namespace CadasterMVC.Models
         public string Nome { get; set; }
         public string Empresa { get; set; }
         public string Contato { get; set; }
-        public string Sexo { get; set; }
         public DateTime DataCriacao { get; set; }
-        public DateTime UltimaAtualizacao { get; set; }
+        public DateTime DataAlteracao { get; set; }
     }
 }

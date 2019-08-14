@@ -4,52 +4,49 @@
     ViewData["Title"] = "Pessoas";
 }
 
+<!-- Link Tags -->
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script type="text/javascript">
+<!-- Body -->
 
-</script>
-
-<h1>Pessoa</h1>
-<hr />
+<h1 class="white text-center">Pessoas</h1>
+<hr class="background-secondary" />
 
 <div class="container">
-    <div class="table-wrapper">
+    <div class="table-wrapper table-borderless">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Gerenciar <b>Pessoas</b></h2>
+                    <h2>Gerenciar Pessoas</h2>
                 </div>
                 <div class="col-sm-6">
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Pessoa</span></a>
                 </div>
             </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
+                    <th style="width: auto">Nome</th>
                     <th>Empresa</th>
                     <th>Contato</th>
-                    <th>Sexo</th>
-                    <th>Actions</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var pessoa in @ViewBag.pessoas)
                 {
                     <tr>
-                        <td id="idPessoa">@pessoa.Id</td>
+                        <td id="idPessoa" hidden>@pessoa.Id</td>
                         <td id="nome">@pessoa.Nome</td>
                         <td id="empresa">@pessoa.Empresa</td>
                         <td id="contato">@pessoa.Contato</td>
-                        <td id="sexo">@pessoa.Sexo</td>
                         <td>
                             <a href="#editEmployeeModal" class="edit" onclick="return obterDadosPessoa(@pessoa.Id);" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" onclick="return excluirPessoa(@pessoa.Id);" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                 }
@@ -57,7 +54,9 @@
         </table>
     </div>
 </div>
+
 <!-- Insert Modal HTML -->
+
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -79,10 +78,6 @@
                         <input id="Contato" name="Contato" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="Sexo" class="control-label">Sexo</label>
-                        <input id="Sexo" name="Sexo" class="form-control" />
-                    </div>
-                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Adicionar</button>
                     </div>
                 </div>
@@ -90,7 +85,9 @@
         </div>
     </div>
 </div>
+
 <!-- Edit Modal HTML -->
+
 <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,10 +111,6 @@
                         <input id="contatoEditar" name="Contato" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="Sexo" class="control-label">Sexo</label>
-                        <input id="sexoEditar" name="Sexo" class="form-control" />
-                    </div>
-                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Atualizar</button>
                     </div>
                 </div>
@@ -125,12 +118,15 @@
         </div>
     </div>
 </div>
+
 <!-- Delete Modal HTML -->
+
 <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            @using (Html.BeginForm("DeletarPessoa", "Pessoa", FormMethod.Post))
+            @using (Html.BeginForm("ExcluirPessoa", "Pessoa", FormMethod.Post))
             {
+                @Html.HiddenFor(x => x.Id, new { id = "idExclusao" })
                 <div class="modal-header">
                     <h4 class="modal-title">Remover Pessoa</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -146,10 +142,6 @@
             }
         </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
