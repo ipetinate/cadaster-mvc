@@ -1,25 +1,25 @@
-CREATE TABLE [Cadaster].[dbo].[Pessoa] 
+CREATE TABLE [Cadaster].[dbo].[Pessoas] 
 	(
-		Id					BIGINT			PRIMARY KEY IDENTITY,
-		Nome				VARCHAR(100)	NOT NULL,
-		Empresa				VARCHAR(100)	NOT NULL,
-		Contato				VARCHAR(100)	NOT NULL,
-		Sexo				VARCHAR(20)				,
-		DataCriacao			DATETIME		NOT NULL,
-		UltimaAtualizacao	DATETIME
+		[Id]				BIGINT		PRIMARY KEY IDENTITY,
+		[Nome]				VARCHAR(100)	NOT NULL,
+		[Empresa]			VARCHAR(100)	NOT NULL,
+		[Contato]			VARCHAR(100)	NOT NULL,
+		[Sexo]				VARCHAR(20)	NULL	,
+		[DataCriacao]			DATETIME	NOT NULL DEFAULT GETDATE(),
+		[UltimaAtualizacao]		DATETIME	NOT NULL DEFAULT GETDATE(),
 	)
 
 INSERT INTO
-	Cadaster..Pessoa (Nome, Empresa, Contato, Sexo, DataCriacao, UltimaAtualizacao)
+	[Cadaster].[dbo].[Pessoas] ([Nome], [Empresa], [Contato], [Sexo], [DataCriacao], [UltimaAtualizacao])
 VALUES
 	(
-		  'Isac Petinate'
-		, 'Viceri'
-		, 'idpetinate@gmail.com'
-		, 'Masculino'
-		, GETDATE()
-		, GETDATE()
+		  ['Usuario Fulano']
+		, ['Empresa']
+		, ['usuario@gmail.com']
+		, ['Indefinido']
+		, [GETDATE()]
+		, [GETDATE()]
 	)
 
-SELECT * FROM Cadaster..Pessoa
+SELECT * FROM [Cadaster].[dbo].[Pessoas]
 GO
